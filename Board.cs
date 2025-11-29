@@ -4,41 +4,8 @@
     {
         private readonly Token[,] _tokens = new Token[6, 7];
 
-        /*        public static void RenderBoard()
-                {
-                    char right = '\u251C';
-                    char left = '\u2524';
-                    char down = '\u252C';
-                    char up = '\u2534';
-                    char topLeft = '\u250C';
-                    char topRight = '\u2510';
-                    char bottomLeft = '\u2514';
-                    char bottomRight = '\u2518';
-
-
-                    Console.WriteLine($"""
-                    {topLeft}---{down}---{down}---{down}---{down}---{down}---{down}---{topRight}
-                    |   |   |   |   |   |   |   |
-                    {right}---+---+---+---+---+---+---{left}
-                    |   |   |   |   |   |   |   |
-                    {right}---+---+---+---+---+---+---{left}
-                    |   |   |   |   |   |   |   |
-                    {right}---+---+---+---+---+---+---{left}
-                    |   |   |   |   |   |   |   |
-                    {right}---+---+---+---+---+---+---{left}
-                    |   |   |   |   |   |   |   |
-                    {right}---+---+---+---+---+---+---{left}
-                    |   |   |   |   |   |   |   |
-                    {bottomLeft}---{up}---{up}---{up}---{up}---{up}---{up}---{bottomRight}
-                      1   2   3   4   5   6   7
-                    """
-                    );
-                }*/
         public void RenderBoard()
         {
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Player red = new(Token.Red);
-            Player yellow = new(Token.Yellow);
             char right = '\u251C';
             char left = '\u2524';
             char down = '\u252C';
@@ -51,9 +18,9 @@
             string topBorder = $"{topLeft}---{down}---{down}---{down}---{down}---{down}---{down}---{topRight}";
             string bottomBorder = $"{bottomLeft}---{up}---{up}---{up}---{up}---{up}---{up}---{bottomRight}";
 
-
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine(topBorder);
-
+            
             for (int row = 0; row < _tokens.GetLength(0); row++)
             {
                 for (int column = 0; column < _tokens.GetLength(1); column++)
