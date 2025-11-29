@@ -72,6 +72,7 @@
             Console.WriteLine(bottomBorder);
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("  1   2   3   4   5   6   7");
+            Console.WriteLine();
         }
         public void SetTokenAt(int row, int column, Player player) => _tokens[row, column] = player.Token;
         public Token GetTokenAt(int row, int column) => _tokens[row, column];
@@ -79,26 +80,26 @@
         public static void DisplayToken(Token token)
         {
             ConsoleColor previousColor = Console.ForegroundColor;
-            char t;
+            char tokenDisplay;
 
             switch (token)
             {
                 case Token.Empty:
-                    t = ' ';
+                    tokenDisplay = ' ';
                     break;
                 case Token.Red:
-                    t = 'O';
+                    tokenDisplay = 'O';
                     Console.ForegroundColor = ConsoleColor.Red;
                     break;
                 case Token.Yellow:
-                    t = 'O';
+                    tokenDisplay = 'O';
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     break;
                 default:
-                    t = ' ';
+                    tokenDisplay = ' ';
                     break;
             }
-            Console.Write(t);
+            Console.Write(tokenDisplay);
 
             Console.ForegroundColor = previousColor;
         }

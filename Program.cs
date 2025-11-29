@@ -1,3 +1,7 @@
 ﻿using ConnectFour;
-Board board = new();
-board.RenderBoard();
+
+ConnectFourGame game = new();
+while (true)
+{
+    game.Run();
+}
