@@ -7,4 +7,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\ellis\source\repos\packet-nova\ConnectFour\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\ellis\source\repos\packet-nova\ConnectFour\.editorconfig" />
+  </ItemGroup>
+
 </Project>
