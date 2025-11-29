@@ -14,8 +14,8 @@
 
         public void Run()
         {
-            _board.RenderBoard();
             DisplayPlayerTurn(_currentPlayer);
+            _board.RenderBoard();
             _currentPlayer = _currentPlayer == _red ? _yellow : _red;
             Console.ReadLine();
             Console.Clear();
@@ -25,7 +25,7 @@
         {
             ConsoleColor previousColor = Console.ForegroundColor;
             Console.ForegroundColor = player.PlayerColor;
-            Console.WriteLine($"It is {_currentPlayer.Name}'s turn.");
+            Console.WriteLine($"It is {_currentPlayer.Name.ToUpper()}'s turn.");
             Console.ForegroundColor = previousColor;
         }
     }
