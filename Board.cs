@@ -4,7 +4,6 @@
     {
         public static void RenderBoard()
         {
-            //char right = '\u22A2';
             char right = '\u251C';
             char left = '\u2524';
             char down = '\u252C';
@@ -30,7 +29,29 @@
             |   |   |   |   |   |   |   |
             {bottomLeft}---{up}---{up}---{up}---{up}---{up}---{up}---{bottomRight}
             """
-                );
+            );
+        }
+
+        public static void DisplayToken(Player player)
+        {
+            char token;
+            switch (player)
+            {
+                case Player.Empty:
+                    token = ' ';
+                    Console.WriteLine(token);
+                    break;
+                case Player.Red:
+                    token = 'O';
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine(token);
+                    break;
+                case Player.Yellow:
+                    token = 'O';
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine(token);
+                    break;
+            }
         }
     }
 }
