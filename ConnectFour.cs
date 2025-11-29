@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ConnectFour
+﻿namespace ConnectFour
 {
     internal class ConnectFour
     {
     }
 
-    public enum Player { Empty, Red, Yellow }
+    public enum Token { Empty, Red, Yellow }
 }
