@@ -53,7 +53,7 @@ namespace ConnectFour
             Console.WriteLine();
         }
 
-        public void SetTokenAt(int row, int column, Player player) => _tokens[row, column] = player.Token;
+        public void SetTokenAt(int column, Player player) => _tokens[NextAvailable(column), column] = player.Token;
         public Token GetTokenAt(int row, int column) => _tokens[row, column];
 
         public int GetUserChoice()
@@ -72,6 +72,19 @@ namespace ConnectFour
                 Console.WriteLine();
             }
             return _keyToColumn[response.Key];
+        }
+
+        private bool ColumnIsFull(int column) => _tokens[0, column] != Token.Empty;
+        public int NextAvailable(int column)
+        {
+            for (int row = _tokens.GetLength(0) -1; row >= 0; row--)
+            {
+                if (_tokens[row, column] == Token.Empty)
+                {
+                    return row;
+                }
+            }
+            return -1;
         }
 
         public void PrintColoredToken(int row, int column)

@@ -17,7 +17,7 @@
             DisplayPlayerTurn(_currentPlayer);
             _board.RenderBoard();
             _currentPlayer = _currentPlayer == _red ? _yellow : _red;
-            _board.SetTokenAt(0, _board.GetUserChoice(), _currentPlayer);
+            _board.SetTokenAt(_board.GetUserChoice(), _currentPlayer);
             Console.Clear();
         }
 
