@@ -17,9 +17,6 @@
 
         public void RenderBoard()
         {
-
-
-
             Console.ForegroundColor = ConsoleColor.Blue;
             
             Console.WriteLine(_topBorder);
@@ -43,6 +40,7 @@
             
             Console.WriteLine();
         }
+
         public void SetTokenAt(int row, int column, Player player) => _tokens[row, column] = player.Token;
         public Token GetTokenAt(int row, int column) => _tokens[row, column];
 
