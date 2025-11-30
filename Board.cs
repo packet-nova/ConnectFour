@@ -19,14 +19,14 @@
             string bottomBorder = $"{bottomLeft}---{up}---{up}---{up}---{up}---{up}---{up}---{bottomRight}";
 
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine(topBorder);
             
+            Console.WriteLine(topBorder);
             for (int row = 0; row < _tokens.GetLength(0); row++)
             {
                 for (int column = 0; column < _tokens.GetLength(1); column++)
                 {
                     Console.Write($"| ");
-                    DisplayToken(GetTokenAt(row, column));
+                    PrintColoredToken(row, column);
                     Console.Write($" ");
                 }
                 Console.WriteLine("|");
@@ -35,25 +35,23 @@
                     Console.WriteLine(divider);
                 }
             }
-
             Console.WriteLine(bottomBorder);
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("  1   2   3   4   5   6   7");
+            
             Console.WriteLine();
         }
         public void SetTokenAt(int row, int column, Player player) => _tokens[row, column] = player.Token;
         public Token GetTokenAt(int row, int column) => _tokens[row, column];
 
-        public static void DisplayToken(Token token)
+        public void PrintColoredToken(int row, int column)
         {
+            Token token = GetTokenAt(row, column);
             ConsoleColor previousColor = Console.ForegroundColor;
-            char tokenDisplay;
+            char tokenDisplay = ' ';
 
             switch (token)
             {
-                case Token.Empty:
-                    tokenDisplay = ' ';
-                    break;
                 case Token.Red:
                     tokenDisplay = 'O';
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -61,9 +59,6 @@
                 case Token.Yellow:
                     tokenDisplay = 'O';
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    break;
-                default:
-                    tokenDisplay = ' ';
                     break;
             }
             Console.Write(tokenDisplay);
