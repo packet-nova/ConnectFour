@@ -6,6 +6,7 @@
         private readonly Player _yellow = new(Token.Yellow);
         private readonly Board _board = new();
         private Player _currentPlayer;
+        private void SwitchPlayers() => _currentPlayer = _currentPlayer == _red ? _yellow : _red;
 
         public ConnectFourGame()
         {
@@ -16,9 +17,9 @@
         {
             DisplayPlayerTurn(_currentPlayer);
             _board.RenderBoard();
-            _currentPlayer = _currentPlayer == _red ? _yellow : _red;
             _board.SetTokenAt(_board.GetUserChoice(), _currentPlayer);
             Console.Clear();
+            SwitchPlayers();
         }
 
         private void DisplayPlayerTurn(Player player)
