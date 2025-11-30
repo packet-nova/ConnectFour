@@ -1,7 +1,19 @@
-﻿namespace ConnectFour
+﻿using System.Data.Common;
+
+namespace ConnectFour
 {
     internal class Board
     {
+        private readonly Dictionary<ConsoleKey, int> _keyToColumn = new()
+        {
+            {ConsoleKey.D1, 0},
+            {ConsoleKey.D2, 1},
+            {ConsoleKey.D3, 2},
+            {ConsoleKey.D4, 3},
+            {ConsoleKey.D5, 4},
+            {ConsoleKey.D6, 5},
+            {ConsoleKey.D7, 6},
+        };
         private readonly Token[,] _tokens = new Token[6, 7];
         private const char Right = '\u251C';
         private const char Down = '\u252C';
@@ -18,7 +30,7 @@
         public void RenderBoard()
         {
             Console.ForegroundColor = ConsoleColor.Blue;
-            
+
             Console.WriteLine(_topBorder);
             for (int row = 0; row < _tokens.GetLength(0); row++)
             {
@@ -37,12 +49,30 @@
             Console.WriteLine(_bottomBorder);
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("  1   2   3   4   5   6   7");
-            
+
             Console.WriteLine();
         }
 
         public void SetTokenAt(int row, int column, Player player) => _tokens[row, column] = player.Token;
         public Token GetTokenAt(int row, int column) => _tokens[row, column];
+
+        public int GetUserChoice()
+        {
+            Console.WriteLine("Which column do you want to place your token?");
+            Console.Write("> ");
+            ConsoleKeyInfo response = Console.ReadKey();
+            Console.WriteLine();
+
+            while (!_keyToColumn.ContainsKey(response.Key))
+            {
+                Console.WriteLine("Invalid choice.");
+                Console.WriteLine("Which column do you want to place your token?");
+                Console.Write("> ");
+                response = Console.ReadKey();
+                Console.WriteLine();
+            }
+            return _keyToColumn[response.Key];
+        }
 
         public void PrintColoredToken(int row, int column)
         {
