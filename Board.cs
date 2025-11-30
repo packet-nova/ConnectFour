@@ -58,26 +58,31 @@ namespace ConnectFour
 
         public int GetUserChoice()
         {
+            int column;
             Console.WriteLine("Which column do you want to place your token?");
             Console.Write("> ");
             ConsoleKeyInfo response = Console.ReadKey();
             Console.WriteLine();
 
-            while (!_keyToColumn.ContainsKey(response.Key))
+            bool isValidKey = _keyToColumn.TryGetValue(response.Key, out column);
+
+            while (!isValidKey || ColumnIsFull(column))
             {
-                Console.WriteLine("Invalid choice.");
+                Console.WriteLine(isValidKey ? "That column is full!" : "Invalid choice!");
                 Console.WriteLine("Which column do you want to place your token?");
                 Console.Write("> ");
                 response = Console.ReadKey();
                 Console.WriteLine();
+                isValidKey = _keyToColumn.TryGetValue(response.Key, out column);
             }
-            return _keyToColumn[response.Key];
+
+            return column;
         }
 
         private bool ColumnIsFull(int column) => _tokens[0, column] != Token.Empty;
         public int NextAvailable(int column)
         {
-            for (int row = _tokens.GetLength(0) -1; row >= 0; row--)
+            for (int row = _tokens.GetLength(0) - 1; row >= 0; row--)
             {
                 if (_tokens[row, column] == Token.Empty)
                 {
