@@ -1,6 +1,4 @@
-﻿using System.Data.Common;
-
-namespace ConnectFour
+﻿namespace ConnectFour
 {
     internal class Board
     {
