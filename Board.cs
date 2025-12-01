@@ -34,8 +34,9 @@
             {
                 for (int column = 0; column < _tokens.GetLength(1); column++)
                 {
+                    Position position = new(row, column);
                     Console.Write($"| ");
-                    PrintColoredToken(row, column);
+                    PrintColoredToken(position);
                     Console.Write($" ");
                 }
                 Console.WriteLine("|");
@@ -51,8 +52,13 @@
             Console.WriteLine();
         }
 
-        public void SetTokenAt(int column, Player player) => _tokens[NextAvailable(column), column] = player.Token;
-        public Token GetTokenAt(int row, int column) => _tokens[row, column];
+        public void SetTokenAt(int column, Player player)
+        {
+            Position position = NextAvailablePosition(column)!;
+            _tokens[position.Row, position.Column] = player.Token;
+        }
+
+        public Token GetTokenAt(Position position) => _tokens[position.Row, position.Column];
 
         public int GetUserChoice()
         {
@@ -78,21 +84,22 @@
         }
 
         private bool ColumnIsFull(int column) => _tokens[0, column] != Token.Empty;
-        public int NextAvailable(int column)
+        public Position? NextAvailablePosition(int column)
         {
             for (int row = _tokens.GetLength(0) - 1; row >= 0; row--)
             {
                 if (_tokens[row, column] == Token.Empty)
                 {
-                    return row;
+                    return new(row, column);
                 }
             }
-            return -1;
+
+            return null;
         }
 
-        public void PrintColoredToken(int row, int column)
+        public void PrintColoredToken(Position position)
         {
-            Token token = GetTokenAt(row, column);
+            Token token = GetTokenAt(position);
             ConsoleColor previousColor = Console.ForegroundColor;
             char tokenDisplay = ' ';
 
