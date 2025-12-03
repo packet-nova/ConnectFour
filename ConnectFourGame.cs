@@ -18,6 +18,14 @@
             DisplayPlayerTurn(_currentPlayer);
             _board.RenderBoard();
             _board.SetTokenAt(_board.GetUserChoice(), _currentPlayer);
+            if (_board.HasWon(_currentPlayer.Token))
+            {
+                Console.WriteLine($"{_currentPlayer.Name} has won!");
+                Console.WriteLine("Press any key to continue!");
+                Console.ReadLine();
+                Console.Clear();
+                return;
+            }
             Console.Clear();
             SwitchPlayers();
         }

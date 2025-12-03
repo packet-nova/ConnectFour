@@ -58,6 +58,18 @@
             _tokens[position.Row, position.Column] = player.Token;
         }
 
+        public bool HasWon(Token token)
+        {
+            if (_tokens[0, 0] == token &&
+                (_tokens[1, 0] == token &&
+                (_tokens[2, 0] == token &&
+                (_tokens[3, 0] == token))))
+            {
+                return true;
+            }
+            return false;
+        }
+
         public Token GetTokenAt(Position position) => _tokens[position.Row, position.Column];
 
         public int GetUserChoice()
